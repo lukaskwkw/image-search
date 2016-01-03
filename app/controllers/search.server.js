@@ -1,8 +1,8 @@
 'use strict';
 
-var Users = require('../models/users.js');
+var Queries = require('../models/users.js');
 
-function ClickHandler () {
+function SearchHandler () {
 
 	this.getClicks = function (req, res) {
 		Users
@@ -38,4 +38,4 @@ function ClickHandler () {
 
 }
 
-module.exports = ClickHandler;
+module.exports = SearchHandler;
