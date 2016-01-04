@@ -8,12 +8,10 @@ module.exports = function (app) {
 
 	app.get('/search/:q',searchHandler);
 	app.get('/recent',function  (req,res) {
-		Queries.find({},function  (err,data) {
-			data = data.map(function  (item) {
-				return {term : item.term, when : item.when}
-			})
+		var Projection = {_id : 0, term : 1, when : 1};
+		Queries.find({}, Projection).limit(10).sort({when : -1}).exec(function  (err,data) {
 			res.end(JSON.stringify(data));
-		})
+		});
 	})
 
 };

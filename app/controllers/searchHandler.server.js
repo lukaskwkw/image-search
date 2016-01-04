@@ -2,23 +2,17 @@
 
 var Queries = require('../models/queries.js');
 var request = require("request");
-var debug = require('debug');
-var routerDebug = debug('router');
-var requestDebug = debug('request');
+
 
 function searchHandler (req, res) {
 
 		var query = req.params.q;
 		var offset = parseInt(req.query.offset);
-
 		var start = (!isNaN(offset)) ? (offset > 0) ?  '&start=' + offset : '' : '';
-
 		var searchUrl = 'https://www.googleapis.com/customsearch/v1?q='+query+'&cx='+process.env.CX+'&searchType=image'+start+'&key='+process.env.API_KEY
 
-		routerDebug(req.query,req.path,req.params,start);
 
 		request.get(searchUrl,function  (err,response,body) {
-			requestDebug(response.statusCode);
 			if (!err && response.statusCode == 200) {
 				var items = JSON.parse(body).items;
 				var respondArr = [];
