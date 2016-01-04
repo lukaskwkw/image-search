@@ -4,8 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Query = new Schema({
-	query : String,
-	date : Date
-});
+	term : String
+},{timestamps : {createdAt : 'when'} });
 
 module.exports = mongoose.model('Query', Query);
