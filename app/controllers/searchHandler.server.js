@@ -30,7 +30,7 @@ function searchHandler (req, res) {
 				var q = new Queries({term : query});
 				q.save();
 
-				res.send(respondArr);
+				res.end(JSON.stringify(respondArr,null,'\t'));
 			}
 			else{
 				res.end();
