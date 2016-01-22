@@ -18,8 +18,16 @@
     "javascript",
     "boilerplate"
   ],
-  "scripts": {
-    "start": "node server.js"
+    "scripts": {
+    "babel": "babel --presets es2015 app/controllers/searchHandler.client.js --watch -o app/controllers/searchHandler.client.bundle.js",
+    "webpack": "webpack"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "webpack": "^1.12.10"
   },
   "author": "Blake Johnston",
   "license": "MIT",

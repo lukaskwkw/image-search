@@ -5,6 +5,49 @@
 <head>
   <title>Image Search</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <style type="text/css">
+  .row-data {
+    position: relative;
+    padding-top: 60px;
+  }
+  .column {
+    min-height: 125px;
+  }
+  .btn-group{
+    top: 1%;
+    left: 42%;
+    position: absolute;
+  }
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #333;
+
+  border-radius: 100%;  
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+  </style>
 </head>
 
 <body>
@@ -24,7 +67,21 @@
 
     <h3>List of recently submitted search strings:</h3>
     <code>https://young-wildwood-8845.herokuapp.com/recent</code>
+
+    <h3>Try Live here: </h3>
+
+
+    <div class="input-group">
+    <input type="text" id="search-input" class="form-control" required="required" placeholder="Type request and press button">
+    <span class="input-group-btn">
+      <button type="button" onclick="performSearch()" class="btn btn-default js-search">Search</button>
+    </span>
+    </div>
+    <div class="container">
+      <div class="js-data row row-data"></div>
+    </div>
   </div>
+  <script src="controllers/searchHandler.client.bundle.js"></script>
 </body>
 
 </html>
