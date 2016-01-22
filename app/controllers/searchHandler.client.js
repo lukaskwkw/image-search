@@ -1,6 +1,8 @@
 let offset = 0;
 let searchButton = document.querySelector('.js-search');
 let prevSearchTerm = '';
+let apiUrl = 'https://young-wildwood-8845.herokuapp.com/' || 'http://localhost:5000/';
+
 
 let nextClick = ()=>{
 	offset+=10;
@@ -24,7 +26,7 @@ let performSearch = () => {
 	}
 
 	let dataDiv = document.querySelector('.js-data');
-	let queryURL = 'http://localhost:5000/search/'+searchTerm+'?offset='+offset;
+	let queryURL = apiUrl+'search/'+searchTerm+'?offset='+offset;
 	// console.log(queryURL);
 	fetch(queryURL)
 		.then(r=>r.json())

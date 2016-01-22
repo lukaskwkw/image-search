@@ -3,6 +3,7 @@
 var offset = 0;
 var searchButton = document.querySelector('.js-search');
 var prevSearchTerm = '';
+var apiUrl = 'https://young-wildwood-8845.herokuapp.com/' || 'http://localhost:5000/';
 
 var nextClick = function nextClick() {
 	offset += 10;
@@ -24,7 +25,7 @@ var performSearch = function performSearch() {
 	}
 
 	var dataDiv = document.querySelector('.js-data');
-	var queryURL = 'http://localhost:5000/search/' + searchTerm + '?offset=' + offset;
+	var queryURL = apiUrl + 'search/' + searchTerm + '?offset=' + offset;
 	// console.log(queryURL);
 	fetch(queryURL).then(function (r) {
 		return r.json();
