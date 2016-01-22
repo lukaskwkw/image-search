@@ -27,29 +27,29 @@ let performSearch = () => {
 
 	let dataDiv = document.querySelector('.js-data');
 	let queryURL = apiUrl+'search/'+searchTerm+'?offset='+offset;
-	// console.log(queryURL);
-	fetch(queryURL)
-		.then(r=>r.json())
-		.then(data=>{
-			let html = '';
-
-			for (let i = 0; i < data.length; i++) {
-				html += `<div id="${i}" class="column col-md-2 col-sm-3 col-xs-6">
-				<a href="${data[i].url}">
-				<div class="spinner"></div>
-				</a>
-					</div>`;
-			}
 
 
-			html += `<div class="btn-group" role="group" aria-label="...">
-  <button type="button" onclick="prevClick()" class="btn btn-default">Back</button>
-  <button type="button" onclick="nextClick()" class="btn btn-default">Next</button>
-</div>`;
 
-			dataDiv.innerHTML =	html;	
+	let appendData = (data) =>{
+		let html = '';
 
-			for (let i = 0; i < data.length; i++) {
+		for (let i = 0; i < data.length; i++) {
+			html += `<div id="${i}" class="column col-md-2 col-sm-3 col-xs-6">
+			<a href="${data[i].url}" target="_blank">
+			<div class="spinner"></div>
+			</a>
+			</div>`;
+		}
+
+
+		html += `<div class="btn-group" role="group" aria-label="Previous button and next button">
+		<button type="button" onclick="prevClick()" class="btn btn-default">Back</button>
+		<button type="button" onclick="nextClick()" class="btn btn-default">Next</button>
+		</div>`;
+
+		dataDiv.innerHTML =	html;	
+
+		for (let i = 0; i < data.length; i++) {
 			let img = new Image();
 			img.src = data[i].thumbnail;
 			img.alt = data[i].snippet;
@@ -68,6 +68,24 @@ let performSearch = () => {
 			}
 		}
 
-		});
+	}
+// appendData end function
+// 
 
-}
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			let data = JSON.parse(xhttp.responseText);
+			appendData(data);
+		}
+	};
+	xhttp.open("GET", queryURL, true);
+	xhttp.send();
+
+/*
+	fetch(queryURL)
+		.then(r=>r.json())
+		.then(appendData);
+		
+		*/
+	}
