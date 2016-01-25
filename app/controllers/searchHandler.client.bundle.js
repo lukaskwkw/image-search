@@ -5,6 +5,11 @@ var searchButton = document.querySelector('.js-search');
 var prevSearchTerm = '';
 var apiUrl = 'https://young-wildwood-8845.herokuapp.com/' || 'http://localhost:5000/';
 
+var check13 = function check13(e) {
+	if (e.keyCode === 13) performSearch();
+	return;
+};
+
 var nextClick = function nextClick() {
 	offset += 10;
 	searchButton.click();

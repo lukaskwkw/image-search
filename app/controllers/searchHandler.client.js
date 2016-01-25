@@ -4,6 +4,12 @@ let prevSearchTerm = '';
 let apiUrl = 'https://young-wildwood-8845.herokuapp.com/' || 'http://localhost:5000/';
 
 
+let check13 = (e) =>{
+	if(e.keyCode === 13)
+		performSearch()
+	return
+}
+
 let nextClick = ()=>{
 	offset+=10;
 	searchButton.click();
